@@ -26,12 +26,12 @@ export function Contact() {
     {
       icon: <Mail size={24} />,
       label: 'Email',
-      value: 'agrito.kryiss@gmail.com',
+      value: 'mailto:agrito.kryiss@gmail.com',
     },
     {
       icon: <Phone size={24} />,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/ali-haider-0850a0159',
+      label: 'Phone',
+      value: 'tel:+973 3648 7095',
     },
     {
       icon: <MapPin size={24} />,
@@ -41,7 +41,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
