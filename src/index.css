@@ -30,7 +30,6 @@
 @layer base {
   * {
     border-color: hsl(var(--border));
-    @apply border-border outline-ring/50;
   }
   
   html,
