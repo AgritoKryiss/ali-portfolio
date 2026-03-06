@@ -1,13 +1,7 @@
-import { ExternalLink, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
+// import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { useState } from "react";
 
