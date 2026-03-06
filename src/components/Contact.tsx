@@ -42,7 +42,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20 bg-gray-50 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,31 +50,31 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Have a project in mind? Let's discuss how I can help bring your vision to life
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-4 md:space-y-6"
           >
             {contactInfo.map((info) => (
               <Card key={info.label} className="hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
                       {info.icon}
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <div className="font-bold text-gray-900 mb-1">{info.label}</div>
-                      <div className="text-gray-600">{info.value}</div>
+                      <div className="text-sm sm:text-base text-gray-600 break-words">{info.value}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -82,9 +82,9 @@ export function Contact() {
             ))}
 
             <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-0">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2">Available for Freelance</h3>
-                <p className="text-blue-100">
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold mb-2">Available for Freelance</h3>
+                <p className="text-sm sm:text-base text-blue-100">
                   I'm currently available for freelance work and new projects. Let's create something amazing together!
                 </p>
               </CardContent>
@@ -100,9 +100,9 @@ export function Contact() {
             className="md:col-span-2"
           >
             <Card>
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Your Name
@@ -158,7 +158,7 @@ export function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
-                      className="w-full min-h-[150px]"
+                      className="w-full min-h-[120px] sm:min-h-[150px]"
                     />
                   </div>
 
