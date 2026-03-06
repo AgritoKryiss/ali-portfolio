@@ -5,6 +5,9 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Card, CardContent } from './ui/card';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+
+
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -18,20 +21,36 @@ export function Contact() {
     e.preventDefault();
     // Handle form submission logic here
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    emailjs.send(
+    "service_xxxxx",
+    "template_xxxxx",
+    formData,
+    "public_key_xxxxx"
+  )
+  .then(() => {
+    alert("Message sent successfully!");
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
+  })
+  .catch(() => {
+    alert("Something went wrong.");
+  });
   };
 
   const contactInfo = [
     {
       icon: <Mail size={24} />,
       label: 'Email',
-      value: 'mailto:agrito.kryiss@gmail.com',
+      value: 'agrito.kryiss@gmail.com',
     },
     {
       icon: <Phone size={24} />,
       label: 'Phone',
-      value: 'tel:+973 3648 7095',
+      value: '+973 3648 7095',
     },
     {
       icon: <MapPin size={24} />,
