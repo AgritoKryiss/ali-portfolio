@@ -8,7 +8,7 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const emailjsData = {
-  serviceId: "service_d02wn11",
+  serviceID: "service_d02wn11",
   templateId: "template_ddvc28l",
   publicKey: "vtLjy58DO80jgDyeJ",
 };
@@ -28,7 +28,7 @@ export function Contact() {
     // alert('Thank you for your message! I will get back to you soon.');
     emailjs
       .send(
-        emailjsData.serviceId,
+        emailjsData.serviceID,
         emailjsData.templateId,
         formData,
         emailjsData.publicKey,
