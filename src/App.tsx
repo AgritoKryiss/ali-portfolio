@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="container overflow-x-hidden">
+      <main className="overflow-x-hidden">
         <Hero />
         <About />
         <Services />
