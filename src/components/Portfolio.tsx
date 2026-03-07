@@ -11,17 +11,23 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { useState } from "react";
 
-const projectImages = import.meta.glob("../assets/projects/*.webp", {
+const projectImages = import.meta.glob<{ default: string }>("../assets/projects/*.webp", {
   eager: true,
 });
 
 const getProjectImage = (filename: string): string => {
   const path = `../assets/projects/${filename}`;
-  const mod = projectImages[path] as { default?: string } | string | undefined;
+  const module = projectImages[path];
   
-  if (!mod) return 'https://via.placeholder.com/800x600?text=No+Image';
-  if (typeof mod === 'string') return mod;
-  return mod.default || 'https://via.placeholder.com/800x600?text=No+Image';
+  // Debug: console.log('Looking for:', path, 'Found:', module);
+  
+  if (!module) {
+    console.warn(`Image not found: ${filename}`);
+    return 'https://via.placeholder.com/800x600?text=No+Image';
+  }
+  
+  // Vite returns { default: "/assets/projects/filename.webp" }
+  return module.default;
 };
 
 export function Portfolio() {
