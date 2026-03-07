@@ -435,7 +435,7 @@ export function Portfolio() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 gap-4">
                       <Button
