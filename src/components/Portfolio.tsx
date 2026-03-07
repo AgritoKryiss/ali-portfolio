@@ -18,9 +18,7 @@ const projectImages = import.meta.glob("../assets/projects/*.webp", {
 
 const getProjectImage = (filename: string) => {
   const path = `../assets/projects/${filename}`;
-  return (
-    projectImages[path] || "https://via.placeholder.com/400x300?text=No+Image"
-  );
+  return projectImages[path] || 'https://via.placeholder.com/800x600?text=No+Image';
 };
 
 export function Portfolio() {
