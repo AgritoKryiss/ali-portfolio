@@ -1,4 +1,4 @@
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 
@@ -54,28 +54,21 @@ export function Hero() {
                 className="border-gray-300"
                 onClick={scrollToPortfolio}
               >
-                <Download className="mr-2" size={20} /> View Portfolio
+                <BriefcaseBusiness className="mr-2" size={20} /> View Portfolio
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 text-center">
+            <div className="flex gap-8 mt-12">
               <div>
-                <p className="text-2xl font-bold text-blue-600">7+</p>
-                <p className="text-gray-600 text-sm">Years Experience</p>
+                <div className="text-3xl font-bold text-gray-900">7+</div>
+                <div className="text-gray-600">Years Experience</div>
               </div>
-
               <div>
-                <p className="text-2xl font-bold text-blue-600">30+</p>
-                <p className="text-gray-600 text-sm">Projects Delivered</p>
+                <div className="text-3xl font-bold text-gray-900">30+</div>
+                <div className="text-gray-600">Projects Completed</div>
               </div>
-
               <div>
-                <p className="text-2xl font-bold text-blue-600">WordPress</p>
-                <p className="text-gray-600 text-sm">Specialist</p>
-              </div>
-
-              <div>
-                <p className="text-2xl font-bold text-blue-600">Global</p>
-                <p className="text-gray-600 text-sm">Clients</p>
+                <div className="text-3xl font-bold text-gray-900">95%+</div>
+                <div className="text-gray-600">On-Time Delivery</div>
               </div>
             </div>
           </motion.div>
