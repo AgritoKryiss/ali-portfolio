@@ -1,14 +1,14 @@
-import { CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function About() {
   const highlights = [
-    'Custom WordPress Theme Development',
-    'Plugin Development & Customization',
-    'WooCommerce E-commerce Solutions',
-    'Advanced Custom Fields (ACF) & CPTs',
-    'Performance Optimization & Debugging',
-    'Team Leadership & Mentoring',
+    "Custom WordPress Theme Development",
+    "Plugin Development & Customization",
+    "WooCommerce E-commerce Solutions",
+    "Advanced Custom Fields (ACF) & CPTs",
+    "Performance Optimization & Debugging",
+    "Team Leadership & Mentoring",
   ];
 
   return (
@@ -21,7 +21,9 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Me</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            About Me
+          </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Passionate about creating exceptional WordPress experiences
           </p>
@@ -51,10 +53,19 @@ export function About() {
               Crafting Digital Excellence Since 2019
             </h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              With over 7 years of experience in WordPress development, I specialize in transforming designs into pixel-perfect, responsive websites while developing custom functionality, debugging complex issues, and optimizing performance for production environments.
+              I am a Senior WordPress Developer with over seven years of
+              professional experience building scalable WordPress and
+              WooCommerce platforms for international clients.
             </p>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              I have expertise in custom themes, plugins, PHP, JavaScript/jQuery, AJAX, ACF, CPTs, CRON jobs, and WordPress hooks and filters. Proven ability to lead development teams, mentor junior developers, and deliver reliable, user-friendly, and maintainable solutions that drive business results.
+              My expertise includes custom theme development, plugin
+              customization, performance optimization, and debugging complex
+              production environments.
+            </p>
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              Throughout my career I have worked on corporate platforms,
+              veterinary nutrition ecosystems, financial services websites,
+              e-commerce platforms, and global consultancy platforms.
             </p>
 
             <div className="space-y-4 grid grid-cols-2">
@@ -67,7 +78,10 @@ export function About() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <CheckCircle2 className="text-blue-600 flex-shrink-0" size={24} />
+                  <CheckCircle2
+                    className="text-blue-600 flex-shrink-0"
+                    size={24}
+                  />
                   <span className="text-gray-700">{highlight}</span>
                 </motion.div>
               ))}
