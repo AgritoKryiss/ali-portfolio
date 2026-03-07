@@ -347,13 +347,13 @@ export function Portfolio() {
       link: "https://www.thechginstitute.com/",
     },
     {
-      title: "Heritage GS NFL",
+      title: "Heritage Signs FL",
       description:
-        "Sports organization website for NFL-related events, team management, and member registration with event scheduling features.",
+        "Full-service custom sign company serving North Florida since 2007. Family-owned business specializing in design, custom fabrication, and installation of commercial signage for businesses, schools, and organizations across Jacksonville and Northeast Florida.",
       image:
-        "https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&q=80&w=1080",
-      tags: ["WordPress", "Sports", "Events", "Membership"],
-      link: "https://www.heritagegsnfl.com/",
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1080",
+      tags: ["WordPress", "Local Business", "Portfolio", "Service"],
+      link: "https://www.heritagesignsfl.com/",
     },
     {
       title: "International Translation Bureau",
