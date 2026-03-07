@@ -13,12 +13,15 @@ import { useState } from "react";
 
 const projectImages = import.meta.glob("../assets/projects/*.webp", {
   eager: true,
-  import: "default",
 });
 
-const getProjectImage = (filename: string) => {
+const getProjectImage = (filename: string): string => {
   const path = `../assets/projects/${filename}`;
-  return projectImages[path] || 'https://via.placeholder.com/800x600?text=No+Image';
+  const mod = projectImages[path] as { default?: string } | string | undefined;
+  
+  if (!mod) return 'https://via.placeholder.com/800x600?text=No+Image';
+  if (typeof mod === 'string') return mod;
+  return mod.default || 'https://via.placeholder.com/800x600?text=No+Image';
 };
 
 export function Portfolio() {
