@@ -53,11 +53,13 @@ export function Contact() {
       icon: <Mail size={24} />,
       label: "Email",
       value: "agrito.kryiss@gmail.com",
+      link: "mailto:agrito.kryiss@gmail.com",
     },
     {
       icon: <Phone size={24} />,
       label: "Phone",
       value: "+973 3648 7095",
+      link: "tel:+97336487095",
     },
     {
       icon: <MapPin size={24} />,
@@ -95,26 +97,47 @@ export function Contact() {
             className="space-y-4 md:space-y-6"
           >
             {contactInfo.map((info) => (
-              <Card
-                key={info.label}
-                className="hover:shadow-lg transition-shadow duration-300"
-              >
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
-                      {info.icon}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="font-bold text-gray-900 mb-1">
-                        {info.label}
+              <div key={info.label}>
+                {info.link ? (
+                  <a href={info.link} target="_blank" rel="noopener noreferrer">
+                    <Card className="hover:shadow-lg transition-shadow duration-300">
+                      <CardContent className="p-4 sm:p-6">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
+                            {info.icon}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="font-bold text-gray-900 mb-1">
+                              {info.label}
+                            </div>
+                            <div className="text-sm sm:text-base text-gray-600 break-words">
+                              {info.value}
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </a>
+                ) : (
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 flex-shrink-0">
+                          {info.icon}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="font-bold text-gray-900 mb-1">
+                            {info.label}
+                          </div>
+                          <div className="text-sm sm:text-base text-gray-600 break-words">
+                            {info.value}
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-sm sm:text-base text-gray-600 break-words">
-                        {info.value}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             ))}
 
             <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-0">
