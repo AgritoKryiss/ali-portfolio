@@ -67,7 +67,7 @@ export function Hero() {
                 <div className="text-gray-600">Projects Completed</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-gray-900">95%+</div>
+                <div className="text-3xl font-bold text-gray-900">100%</div>
                 <div className="text-gray-600">On-Time Delivery</div>
               </div>
             </div>
