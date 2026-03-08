@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ali-portfolio-zeta.vercel.app/sitemap.xml
