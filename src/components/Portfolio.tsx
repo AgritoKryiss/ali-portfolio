@@ -1,16 +1,11 @@
-import { ExternalLink, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { useState } from "react";
+import { ExternalLink, Code, Layout, ShoppingCart, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Card, CardContent } from './ui/card';
+import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+import { useState } from 'react';
 
+// Project images - using local assets
 const projectImages = import.meta.glob<{ default: string }>("../assets/projects/*.webp", {
   eager: true,
 });
@@ -18,491 +13,501 @@ const projectImages = import.meta.glob<{ default: string }>("../assets/projects/
 const getProjectImage = (filename: string): string => {
   const path = `../assets/projects/${filename}`;
   const module = projectImages[path];
-  
-  // Debug: console.log('Looking for:', path, 'Found:', module);
-  
   if (!module) {
-    console.warn(`Image not found: ${filename}`);
-    return 'https://via.placeholder.com/800x600?text=No+Image';
+    return 'https://via.placeholder.com/800x600?text=Project';
   }
-  
-  // Vite returns { default: "/assets/projects/filename.webp" }
   return module.default;
 };
 
+// Project type definitions
+type ProjectCategory = 'wordpress' | 'woocommerce' | 'shopify' | 'webflow';
+
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  link: string;
+  category: ProjectCategory;
+  role: string;
+}
+
+const projects: Project[] = [
+  // WordPress Ecosystem Projects
+  {
+    title: 'Lafeber Company',
+    description: 'Large-scale WordPress multisite ecosystem supporting veterinary education, e-commerce, and animal nutrition platforms with custom themes and plugins.',
+    image: getProjectImage('Lafeber.webp'),
+    tags: ['WordPress', 'WooCommerce', 'ACF', 'Custom Post Types', 'Multisite'],
+    link: 'https://lafeber.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Premier Consultancy',
+    description: 'Corporate immigration consultancy platform helping global investors obtain residency and citizenship programs through investment.',
+    image: getProjectImage('premierconsultancy.webp'),
+    tags: ['WordPress', 'Custom Theme', 'Consulting', 'Financial Services'],
+    link: 'https://premierconsultancy.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Premier Consultancy Thailand',
+    description: 'Localized platform targeting the Thai market and international investors with multilingual support.',
+    image: getProjectImage('premierconsultancy-co-th.webp'),
+    tags: ['WordPress', 'Multilingual', 'Custom Theme', 'WPML'],
+    link: 'https://premierconsultancy.co.th/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Emeraid Veterinary',
+    description: 'Veterinary nutrition platform delivering specialized recovery formulas for exotic animals with B2B portal.',
+    image: getProjectImage('emeraid.webp'),
+    tags: ['WordPress', 'WooCommerce', 'B2B', 'Healthcare'],
+    link: 'https://emeraid.com/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Premier Travelogue',
+    description: 'Content platform focused on global investment destinations and lifestyle migration.',
+    image: getProjectImage('premiertravelogue.webp'),
+    tags: ['WordPress', 'Custom Theme', 'Travel', 'Content'],
+    link: 'https://premiertravelogue.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Dynamic Capital Funding',
+    description: 'Financial services platform providing funding solutions for businesses with application portal.',
+    image: getProjectImage('funding-dynamiccap.webp'),
+    tags: ['WordPress', 'Fintech', 'Custom Portal', 'Lead Generation'],
+    link: 'https://funding.dynamiccap.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Tippitoes Dance',
+    description: 'Franchise dance education platform serving multiple locations with class scheduling and registration.',
+    image: getProjectImage('tippitoesdance.webp'),
+    tags: ['WordPress', 'Booking System', 'Franchise', 'Education'],
+    link: 'https://www.tippitoesdance.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Essential Data Corporation',
+    description: 'Nationwide technical writing and documentation services with 40+ years of expertise.',
+    image: getProjectImage('essentialdata.webp'),
+    tags: ['WordPress', 'Custom Theme', 'B2B', 'Professional Services'],
+    link: 'https://essentialdata.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'The Salisbury Center',
+    description: 'Premier event venue hosting comedy shows, MMA events, and live performances.',
+    image: getProjectImage('thesalisburycenter.webp'),
+    tags: ['WordPress', 'Events', 'Venue', 'Ticketing'],
+    link: 'https://thesalisburycenter.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Eagle Rigging & Transport',
+    description: 'Industrial machinery moving and heavy rigging services with quote request system.',
+    image: getProjectImage('eaglerigging.webp'),
+    tags: ['WordPress', 'Industrial', 'Custom Theme', 'Lead Generation'],
+    link: 'https://eaglerigging.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Iron & Fire Coffee',
+    description: 'Award-winning specialty coffee roaster with e-commerce and subscription services.',
+    image: getProjectImage('ironandfire.webp'),
+    tags: ['WordPress', 'WooCommerce', 'Subscription', 'E-commerce'],
+    link: 'https://ironandfire.co.uk/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Trinity Credit',
+    description: 'Debt relief and financial counseling services with consultation booking.',
+    image: getProjectImage('trinitycredit-org.webp'),
+    tags: ['WordPress', 'Financial Services', 'Lead Generation', 'Booking'],
+    link: 'https://trinitycredit.org/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Passarella & Associates',
+    description: 'Environmental consulting firm specializing in ecological assessments and permitting.',
+    image: getProjectImage('passarella.webp'),
+    tags: ['WordPress', 'Environmental', 'Consulting', 'Custom Theme'],
+    link: 'https://passarella.net/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Crisp Regional Hospital',
+    description: 'Full-service hospital with patient portal, physician directory, and online bill pay.',
+    image: getProjectImage('crispregional-org.webp'),
+    tags: ['WordPress', 'Healthcare', 'Patient Portal', 'Custom Theme'],
+    link: 'https://crispregional.org/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Amida Care',
+    description: "New York's largest Special Needs Plan providing health coverage with expert HIV care.",
+    image: getProjectImage('amidacareny-org.webp'),
+    tags: ['WordPress', 'Healthcare', 'Insurance', 'Member Portal'],
+    link: 'https://www.amidacareny.org/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'ARC Group',
+    description: 'American Recruiting & Consulting Group with 40+ years experience in recruitment.',
+    image: getProjectImage('arcgonline.webp'),
+    tags: ['WordPress', 'Recruitment', 'Job Board', 'Custom Portal'],
+    link: 'https://www.arcgonline.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Meridian Integration',
+    description: 'Oracle Energy and Water implementation partner for utility companies.',
+    image: getProjectImage('meridian-integration.webp'),
+    tags: ['WordPress', 'Enterprise', 'Technology', 'B2B'],
+    link: 'https://www.meridian-integration.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Health Source Acupuncture',
+    description: 'Acupuncture and integrative medicine clinic with appointment booking.',
+    image: getProjectImage('healthsourceacupuncture.webp'),
+    tags: ['WordPress', 'Healthcare', 'Booking System', 'Blog'],
+    link: 'https://www.healthsourceacupuncture.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Nerve Health Institute',
+    description: 'Functional medicine clinic specializing in nerve health and chronic pain.',
+    image: getProjectImage('nervehealth.webp'),
+    tags: ['WordPress', 'Healthcare', 'Functional Medicine', 'Custom Theme'],
+    link: 'https://nervehealth.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Dr. Jason Tripp',
+    description: 'Chronic pain and illness specialist with neurologic, metabolic healing approaches.',
+    image: getProjectImage('drjasontripp.webp'),
+    tags: ['WordPress', 'Healthcare', 'Functional Medicine', 'Custom Theme'],
+    link: 'https://www.drjasontripp.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Chiro Revival',
+    description: 'Holistic chiropractic and wellness center with comprehensive patient care.',
+    image: getProjectImage('chirorevival.webp'),
+    tags: ['WordPress', 'Healthcare', 'Chiropractic', 'Lead Generation'],
+    link: 'https://chirorevival.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Fusynth',
+    description: 'Strategic business growth partner with marketing and web development services.',
+    image: getProjectImage('fusynth.webp'),
+    tags: ['WordPress', 'Agency', 'Marketing', 'Portfolio'],
+    link: 'https://fusynth.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Shad Rentals',
+    description: 'Australian car rental and rent-to-own service for rideshare drivers.',
+    image: getProjectImage('shadrentals-au.webp'),
+    tags: ['WordPress', 'Automotive', 'Rental', 'Booking'],
+    link: 'https://shadrentals.com.au/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Space Print Australia',
+    description: "Australia's #1 online printing service with next-day dispatch.",
+    image: getProjectImage('spaceprint-au.webp'),
+    tags: ['WordPress', 'E-commerce', 'Printing', 'B2B'],
+    link: 'https://www.spaceprint.com.au/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Heritage Signs FL',
+    description: 'Full-service custom sign company serving North Florida since 2007.',
+    image: getProjectImage('heritagesignsfl.webp'),
+    tags: ['WordPress', 'Local Business', 'Portfolio', 'Service'],
+    link: 'https://www.heritagesignsfl.com/',
+    category: 'wordpress',
+    role: 'Senior WordPress Developer',
+  },
+  // WooCommerce
+  {
+    title: 'iHeartDogs',
+    description: 'Dog rescue organization with mission-driven e-commerce. Every purchase funds food donations.',
+    image: getProjectImage('iheartdogs.webp'),
+    tags: ['WooCommerce', 'Nonprofit', 'Social Impact', 'E-commerce'],
+    link: 'https://iheartdogs.com/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'iHeartCats',
+    description: 'Cat rescue and advocacy platform with pet food donations and flight rescue programs.',
+    image: getProjectImage('iheartcats.webp'),
+    tags: ['WooCommerce', 'Nonprofit', 'Pet Rescue', 'Community'],
+    link: 'https://iheartcats.com/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Cannanine',
+    description: 'Organic hemp CBD oil products for dogs and cats with subscription options.',
+    image: getProjectImage('cannanine.webp'),
+    tags: ['WooCommerce', 'Pet Health', 'Subscription', 'E-commerce'],
+    link: 'https://cannanine.com/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Sunshine4Health',
+    description: "Nature's Sunshine Products distributor with wellness education and consultations.",
+    image: getProjectImage('sunshine4health.webp'),
+    tags: ['WooCommerce', 'Health & Wellness', 'MLM', 'E-commerce'],
+    link: 'https://sunshine4health.com/',
+    category: 'woocommerce',
+    role: 'Senior WordPress Developer',
+  },
+  // Shopify
+  {
+    title: 'Whitney Jordan Naturals',
+    description: 'Premium air-dried fruit snacks with subscription boxes and wholesale portal.',
+    image: getProjectImage('whitneyjordan.webp'),
+    tags: ['Shopify', 'E-commerce', 'Subscription', 'Food & Beverage'],
+    link: 'https://whitneyjordan.net/',
+    category: 'shopify',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'Audae Club',
+    description: 'Luxury dress rental platform offering secondhand designer gowns.',
+    image: getProjectImage('audaeclub.webp'),
+    tags: ['Shopify', 'Rental', 'Fashion', 'Luxury'],
+    link: 'https://audaeclub.com/',
+    category: 'shopify',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'The Hero Company',
+    description: 'Patriotic jewelry brand that donates 20% of proceeds to fund service dogs for veterans.',
+    image: getProjectImage('theherocompany.webp'),
+    tags: ['Shopify', 'Jewelry', 'Social Impact', 'Veterans'],
+    link: 'https://theherocompany.co/',
+    category: 'shopify',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'STRĀ Worldwide',
+    description: 'Innovative pet feeding solutions that fund street feeders globally.',
+    image: getProjectImage('straworldwide.webp'),
+    tags: ['Shopify', 'Pet Products', 'Social Impact', 'Innovation'],
+    link: 'https://straworldwide.com/',
+    category: 'shopify',
+    role: 'Senior WordPress Developer',
+  },
+  // WebFlow
+  {
+    title: 'Live in Alignment',
+    description: 'Functional medicine clinic specializing in Energy Recharge System therapies.',
+    image: getProjectImage('liveinalignment-org.webp'),
+    tags: ['Webflow', 'Healthcare', 'Functional Medicine', 'Animations'],
+    link: 'https://www.liveinalignment.org/',
+    category: 'webflow',
+    role: 'Senior WordPress Developer',
+  },
+  {
+    title: 'NeuroLife Healing',
+    description: 'TMS and neurofeedback therapy center treating depression and anxiety.',
+    image: getProjectImage('neurolifehealing.webp'),
+    tags: ['Webflow', 'Healthcare', 'Mental Health', 'Modern Design'],
+    link: 'https://www.neurolifehealing.com/',
+    category: 'webflow',
+    role: 'Senior WordPress Developer',
+  },
+];
+
+const categories = [
+  { id: 'all', label: 'All Projects', icon: Layout },
+  { id: 'wordpress', label: 'WordPress', icon: Code },
+  { id: 'woocommerce', label: 'WooCommerce', icon: ShoppingCart },
+  { id: 'shopify', label: 'Shopify', icon: ShoppingCart },
+  { id: 'webflow', label: 'Webflow', icon: Globe },
+];
+
 export function Portfolio() {
-  const [showAll, setShowAll] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [visibleProjects, setVisibleProjects] = useState(6);
 
-  const projects = [
-    // ==========================================
-    // WORDPRESS SITES (29 sites)
-    // ==========================================
+  const filteredProjects = activeFilter === 'all' 
+    ? projects 
+    : projects.filter(p => p.category === activeFilter);
 
-    // Premier Consultancy Group
-    {
-      title: "Premier Consultancy",
-      description:
-        "VIP immigration and international tax consultancy for high-net-worth individuals. Features citizenship by investment programs, residency solutions, and global mobility services with 20+ years of industry experience.",
-      image: getProjectImage("premierconsultancy.webp"),
-      tags: ["WordPress", "Consulting", "Financial Services", "Custom Theme"],
-      link: "https://premierconsultancy.com/",
-    },
-    {
-      title: "Premier Consultancy - Thailand",
-      description:
-        "Thailand office of Premier Consultancy serving Southeast Asian clients with residency by investment, second citizenship programs, and international tax planning services.",
-      image: getProjectImage("premierconsultancy-co-th.webp"),
-      tags: ["WordPress", "Multilingual", "Consulting", "Booking System"],
-      link: "https://premierconsultancy.co.th/",
-    },
-    {
-      title: "Premier Travelogue",
-      description:
-        "Travel and tourism platform showcasing luxury destinations, travel guides, and bespoke vacation experiences for discerning travelers seeking unique global adventures.",
-      image: getProjectImage("premiertravelogue.webp"),
-      tags: ["WordPress", "Travel", "Luxury", "Gallery"],
-      link: "https://premiertravelogue.com/",
-    },
+  const displayedProjects = filteredProjects.slice(0, visibleProjects);
+  const hasMore = visibleProjects < filteredProjects.length;
 
-    // Lafeber Company Multi-site Ecosystem
-    {
-      title: "Lafeber Company",
-      description:
-        "Multi-site WordPress ecosystem for premium pet nutrition company. Includes retail, veterinary, and specialty pet bird divisions with WooCommerce integration and custom product catalogs.",
-      image: getProjectImage("Lafeber.webp"),
-      tags: ["WordPress", "WooCommerce", "Multisite", "ACF", "CPT"],
-      link: "https://lafeber.com/",
-    },
-    {
-      title: "Lafeber Pet Shop",
-      description:
-        "E-commerce storefront for Lafeber's premium pet products featuring subscription services, auto-ship functionality, and educational resources for pet owners.",
-      image: getProjectImage("lafeber-shop.webp"),
-      tags: ["WooCommerce", "E-commerce", "Subscription", "ACF"],
-      link: "https://lafeber.com/petshop",
-    },
-    {
-      title: "Lafeber Vet",
-      description:
-        "Veterinary professional portal with specialized nutrition resources, practice management tools, and wholesale ordering system for veterinary clinics.",
-      image: getProjectImage("lafeber-vet.webp"),
-      tags: ["WordPress", "WooCommerce", "B2B", "Veterinary", "ACF"],
-      link: "https://lafeber.com/vet",
-    },
-    {
-      title: "Lafeber Mammals",
-      description:
-        "Specialized division focusing on small mammal nutrition with species-specific feeding guides, product recommendations, and care resources for exotic pet owners.",
-      image: getProjectImage("lafeber-mammals.webp"),
-      tags: ["WordPress", "Custom Theme", "Educational", "ACF"],
-      link: "https://lafeber.com/mammals",
-    },
-    {
-      title: "Lafeber Pet Birds",
-      description:
-        "Avian nutrition authority featuring species-specific diets, bird care guides, and premium pellet food products backed by veterinary research.",
-      image: getProjectImage("lafeber-pet-birds.webp"),
-      tags: ["WordPress", "Custom Theme", "Educational", "ACF", "CPT"],
-      link: "https://lafeber.com/pet-birds",
-    },
-
-    // Emeraid Healthcare
-    {
-      title: "Emeraid Healthcare",
-      description:
-        "Critical care nutrition for exotic animals and pets. Features veterinary-grade recovery diets, feeding protocols, and clinical resources for animal hospitals.",
-      image: getProjectImage("emeraid.webp"),
-      tags: ["WordPress", "WooCommerce", "Healthcare", "Veterinary"],
-      link: "https://emeraid.com/",
-    },
-    {
-      title: "Emeraid Veterinary",
-      description:
-        "Veterinary professional portal for Emeraid's critical care nutrition products with clinical studies, feeding calculators, and practice integration tools.",
-      image: getProjectImage("emeraid-vet.webp"),
-      tags: ["WordPress", "WooCommerce", "B2B", "Veterinary"],
-      link: "https://emeraid.com/vet",
-    },
-
-    // Additional Sites from Research
-    {
-      title: "Essential Data Corporation",
-      description:
-        "Nationwide technical writing and documentation services with 40+ years of expertise. Features service catalogs, industry solutions, and client portal for document management.",
-      image: getProjectImage("essentialdata.webp"),
-      tags: ["WordPress", "B2B", "Professional Services", "Custom Theme"],
-      link: "https://essentialdata.com/",
-    },
-    {
-      title: "The Salisbury Center",
-      description:
-        "Northern Virginia's premier event venue hosting comedy shows, MMA events, and live performances. Features event calendar, ticketing integration, and virtual tours.",
-      image: getProjectImage("thesalisburycenter.webp"),
-      tags: ["WordPress", "Events", "Venue", "Ticketing"],
-      link: "https://thesalisburycenter.com/",
-    },
-    {
-      title: "Eagle Rigging & Transport",
-      description:
-        "Industrial machinery moving and heavy rigging services. Features service portfolio, equipment showcase, quote request system, and project case studies.",
-      image: getProjectImage("eaglerigging.webp"),
-      tags: ["WordPress", "Industrial", "Logistics", "Custom Theme"],
-      link: "https://eaglerigging.com/",
-    },
-    {
-      title: "Iron & Fire Coffee",
-      description:
-        "Award-winning specialty coffee roaster offering premium beans, brewing equipment, and subscription services. Features e-commerce, brewing guides, and coffee education resources.",
-      image: getProjectImage("ironandfire.webp"),
-      tags: ["WordPress", "WooCommerce", "Subscription", "Food & Beverage"],
-      link: "https://ironandfire.co.uk/",
-    },
-    {
-      title: "Trinity Credit",
-      description:
-        "Debt relief and financial counseling services helping individuals manage unsecured debt and mortgage assistance. Features consultation booking and resource library.",
-      image: getProjectImage("trinitycredit-org.webp"),
-      tags: [
-        "WordPress",
-        "Financial Services",
-        "Consulting",
-        "Lead Generation",
-      ],
-      link: "https://trinitycredit.org/",
-    },
-    {
-      title: "Passarella & Associates",
-      description:
-        "Environmental consulting firm specializing in ecological assessments, permitting, and listed species surveys. Features service portfolio and project case studies.",
-      image: getProjectImage("passarella.webp"),
-      tags: ["WordPress", "Environmental", "Consulting", "Custom Theme"],
-      link: "https://passarella.net/",
-    },
-    {
-      title: "Dynamic Capital",
-      description:
-        "Revenue-based financing and business line of credit solutions for small businesses. Features loan calculators, application portal, and merchant resources.",
-      image: getProjectImage("dynamiccap.webp"),
-      tags: ["WordPress", "Financial Services", "Fintech", "Custom Portal"],
-      link: "https://www.dynamiccap.com/",
-    },
-    {
-      title: "Dynamic Cap Funding",
-      description:
-        "Quick pre-qualification portal for Dynamic Capital's business financing solutions with streamlined application process and funding status tracking.",
-      image: getProjectImage("funding-dynamiccap.webp"),
-      tags: ["WordPress", "Fintech", "Landing Page", "Lead Generation"],
-      link: "https://funding.dynamiccap.com/",
-    },
-    {
-      title: "Sunshine4Health",
-      description:
-        "Nature's Sunshine Products independent distributor featuring natural supplements, wellness education, and personalized health consultations.",
-      image: getProjectImage("sunshine4health.webp"),
-      tags: ["WordPress", "E-commerce", "Health & Wellness", "MLM"],
-      link: "https://sunshine4health.com/",
-    },
-    {
-      title: "iHeartCats",
-      description:
-        "Cat rescue and advocacy platform featuring pet food donations, flight rescue programs, and community-driven initiatives to help shelter cats.",
-      image: getProjectImage("iheartcats.webp"),
-      tags: ["WordPress", "Nonprofit", "Pet Rescue", "Community"],
-      link: "https://iheartcats.com/",
-    },
-    {
-      title: "iHeartDogs",
-      description:
-        "Dog rescue organization with mission-driven e-commerce. Every purchase funds food donations, flight rescues, and support for domestic violence survivors with pets.",
-      image: getProjectImage("iheartdogs.webp"),
-      tags: ["WordPress", "WooCommerce", "Nonprofit", "Social Impact"],
-      link: "https://iheartdogs.com/",
-    },
-    {
-      title: "Cannanine",
-      description:
-        "Organic hemp CBD oil products for dogs and cats. Features educational content, product subscriptions, and give-back program feeding shelter dogs with every purchase.",
-      image: getProjectImage("cannanine.webp"),
-      tags: ["WordPress", "WooCommerce", "Pet Health", "Subscription"],
-      link: "https://cannanine.com/",
-    },
-    {
-      title: "Meridian Integration",
-      description:
-        "Oracle Energy and Water implementation partner driving digital evolution for utility companies. Features service portfolios, case studies, and partner integrations.",
-      image: getProjectImage("meridian-integration.webp"),
-      tags: ["WordPress", "Enterprise", "Technology", "B2B"],
-      link: "https://www.meridian-integration.com/",
-    },
-    {
-      title: "Crisp Regional Hospital",
-      description:
-        "Full-service hospital serving Central Georgia with modern medical practices. Features patient portal, physician directory, service information, and online bill pay.",
-      image: getProjectImage("crispregional-org.webp"),
-      tags: ["WordPress", "Healthcare", "Patient Portal", "Custom Theme"],
-      link: "https://crispregional.org/",
-    },
-    {
-      title: "ARC Group",
-      description:
-        "American Recruiting & Consulting Group with 40+ years of experience. Features job board, recruitment intelligence services, and candidate/client portals.",
-      image: getProjectImage("arcgonline.webp"),
-      tags: ["WordPress", "Recruitment", "Job Board", "Custom Portal"],
-      link: "https://www.arcgonline.com/",
-    },
-    {
-      title: "Amida Care",
-      description:
-        "New York's largest Special Needs Plan providing health coverage with expert HIV and gender-affirming care. Features provider directories and member resources.",
-      image: getProjectImage("amidacareny-org.webp"),
-      tags: ["WordPress", "Healthcare", "Insurance", "Member Portal"],
-      link: "https://www.amidacareny.org/",
-    },
-    {
-      title: "Space Print",
-      description:
-        "Australia's #1 online printing service offering business cards, stationery, and marketing materials with free delivery and next-day dispatch.",
-      image: getProjectImage("spaceprint-au.webp"),
-      tags: ["WordPress", "E-commerce", "Printing", "B2B"],
-      link: "https://www.spaceprint.com.au/",
-    },
-    {
-      title: "Health Source Acupuncture",
-      description:
-        "Acupuncture and integrative medicine clinic in Linwood, NJ. Features educational blog, appointment booking, and holistic health resources.",
-      image: getProjectImage("healthsourceacupuncture.webp"),
-      tags: ["WordPress", "Healthcare", "Booking System", "Blog"],
-      link: "https://www.healthsourceacupuncture.com/",
-    },
-    {
-      title: "Revival Health & Wellness",
-      description:
-        "Holistic chiropractic and wellness center in Fenton, MO. Features neuropathy treatment, nutritional counseling, and comprehensive patient care programs.",
-      image: getProjectImage("chirorevival.webp"),
-      tags: ["WordPress", "Healthcare", "Chiropractic", "Lead Generation"],
-      link: "https://chirorevival.com/",
-    },
-    {
-      title: "Dr. Jason Tripp",
-      description:
-        "Chronic pain and illness specialist offering neurologic, metabolic, and structural healing approaches. Features patient testimonials and treatment protocols.",
-      image: getProjectImage("drjasontripp.webp"),
-      tags: ["WordPress", "Healthcare", "Functional Medicine", "Custom Theme"],
-      link: "https://www.drjasontripp.com/",
-    },
-    {
-      title: "Nerve Health Institute",
-      description:
-        "Functional and holistic medicine clinic in Lafayette specializing in nerve health, chronic pain, and alternative healing therapies.",
-      image: getProjectImage("nervehealth.webp"),
-      tags: ["WordPress", "Healthcare", "Functional Medicine", "Custom Theme"],
-      link: "https://nervehealth.com/",
-    },
-    {
-      title: "Fusynth",
-      description:
-        "Strategic business growth partner offering growth marketing, e-commerce solutions, design systems, and web development services.",
-      image: getProjectImage("fusynth.webp"),
-      tags: ["WordPress", "Agency", "Marketing", "Portfolio"],
-      link: "https://fusynth.com/",
-    },
-    {
-      title: "Shad Rentals",
-      description:
-        "Australian car rental and rent-to-own service featuring hybrid vehicles for rideshare drivers. Features vehicle catalog and booking system.",
-      image: getProjectImage("shadrentals-au.webp"),
-      tags: ["WordPress", "Automotive", "Rental", "Booking System"],
-      link: "https://shadrentals.com.au/",
-    },
-    {
-      title: "Tippitoes Dance",
-      description:
-        "Dance studio website with class scheduling, registration system, and showcase galleries for student performances and events.",
-      image: getProjectImage("tippitoesdance.webp"),
-      tags: ["WordPress", "Dance", "Booking System", "Gallery"],
-      link: "https://www.tippitoesdance.com/",
-    },
-    {
-      title: "CHG Institute",
-      description:
-        "Educational institution offering professional development courses, certification programs, and corporate training solutions.",
-      image: getProjectImage("thehcginstitute.webp"),
-      tags: ["WordPress", "Education", "LMS", "Custom Portal"],
-      link: "https://www.thechginstitute.com/",
-    },
-    {
-      title: "Heritage Signs FL",
-      description:
-        "Full-service custom sign company serving North Florida since 2007. Family-owned business specializing in design, custom fabrication, and installation of commercial signage for businesses, schools, and organizations across Jacksonville and Northeast Florida.",
-      image: getProjectImage("heritagesignsfl.webp"),
-      tags: ["WordPress", "Local Business", "Portfolio", "Service"],
-      link: "https://www.heritagesignsfl.com/",
-    },
-    // {
-    //   title: "International Translation Bureau",
-    //   description:
-    //     "Multilingual translation services with project submission portal, language selection system, and professional interpreter network.",
-    //   image: getProjectImage(""),
-    //   tags: ["WordPress", "Multilingual", "Translation", "WPML"],
-    //   link: "https://www.internationaltercumeburosu.com/",
-    // },
-
-    // ==========================================
-    // SHOPIFY SITES (4 sites)
-    // ==========================================
-
-    {
-      title: "Whitney Jordan Naturals",
-      description:
-        "Premium air-dried fruit snacks with clean ingredients. Shopify store featuring subscription boxes, wholesale portal, and product education content.",
-      image: getProjectImage("whitneyjordan.webp"),
-      tags: ["Shopify", "E-commerce", "Food & Beverage", "Subscription"],
-      link: "https://whitneyjordan.net/",
-    },
-    {
-      title: "Audae Club",
-      description:
-        "Luxury dress rental platform offering secondhand designer gowns. Features rental calendar, size filtering, and professional cleaning services.",
-      image: getProjectImage("audaeclub.webp"),
-      tags: ["Shopify", "Rental", "Fashion", "Luxury"],
-      link: "https://audaeclub.com/",
-    },
-    {
-      title: "The Hero Company",
-      description:
-        "Patriotic jewelry and accessories brand that donates 20% of proceeds to fund service dogs for veterans battling PTSD. Over $1.7M funded to date.",
-      image: getProjectImage("theherocompany.webp"),
-      tags: ["Shopify", "Jewelry", "Social Impact", "Veterans"],
-      link: "https://theherocompany.co/",
-    },
-    {
-      title: "STRĀ Worldwide",
-      description:
-        "Innovative pet feeding solutions that fund street feeders globally. Every bracelet purchase provides 10 meals to stray dogs and cats with tracking updates.",
-      image: getProjectImage("straworldwide.webp"),
-      tags: ["Shopify", "Pet Products", "Social Impact", "Innovation"],
-      link: "https://straworldwide.com/",
-    },
-
-    // ==========================================
-    // WEBFLOW SITES (2 sites)
-    // ==========================================
-
-    {
-      title: "Live in Alignment",
-      description:
-        "Functional medicine clinic specializing in Energy Recharge System therapies, hyperbaric oxygen treatment, and holistic healing for complex chronic conditions.",
-      image: getProjectImage("liveinalignment-org.webp"),
-      tags: ["Webflow", "Healthcare", "Functional Medicine", "Animations"],
-      link: "https://www.liveinalignment.org/",
-    },
-    {
-      title: "NeuroLife Healing",
-      description:
-        "TMS and neurofeedback therapy center in Salt Lake City treating depression, anxiety, ADHD, and brain-based conditions without medication.",
-      image: getProjectImage("neurolifehealing.webp"),
-      tags: ["Webflow", "Healthcare", "Mental Health", "Modern Design"],
-      link: "https://www.neurolifehealing.com/",
-    },
-  ];
-  const visibleProjects = showAll ? projects : projects.slice(0, 6);
+  const loadMore = () => {
+    setVisibleProjects(prev => prev + 6);
+  };
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-20 lg:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Portfolio
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Recent projects that showcase my expertise and creativity
+          <h2 className="section-heading">Featured Projects</h2>
+          <p className="section-subheading mx-auto">
+            A selection of production websites I've built and maintained for clients worldwide
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {visibleProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="overflow-hidden hover:shadow-2xl transition-shadow duration-300 h-full">
-                  <div className="relative overflow-hidden group">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-64 object-cover object-top transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 gap-4">
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        className="bg-white hover:bg-gray-100"
-                        onClick={() => window.open(project.link, "_blank")}
-                      >
-                        <ExternalLink size={16} className="mr-2" /> View Live
-                      </Button>
-                    </div>
-                  </div>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription className="text-gray-600">
-                      {project.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="bg-blue-100 text-blue-700 hover:bg-blue-200"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => {
+                setActiveFilter(category.id);
+                setVisibleProjects(6);
+              }}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeFilter === category.id
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
+                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              <category.icon className="w-4 h-4" />
+              {category.label}
+            </button>
+          ))}
         </div>
 
-        {projects.length > 6 && (
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {displayedProjects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border-0">
+                {/* Image */}
+                <div className="relative overflow-hidden aspect-video">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Overlay Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Button
+                      size="sm"
+                      onClick={() => window.open(project.link, '_blank')}
+                      className="bg-white text-slate-900 hover:bg-blue-600 hover:text-white"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      View Live
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <CardContent className="p-5">
+                  {/* Role Badge */}
+                  <div className="mb-2">
+                    <Badge variant="secondary" className="text-xs bg-blue-50 text-blue-700 border-0">
+                      {project.role}
+                    </Badge>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-sm text-slate-600 mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-600 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Load More */}
+        {hasMore && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-12"
           >
             <Button
               size="lg"
-              onClick={() => setShowAll(!showAll)}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              variant="outline"
+              onClick={loadMore}
+              className="border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white px-8"
             >
-              {showAll
-                ? "Show Less"
-                : `View More Projects (${projects.length - 6} more)`}
-              <ChevronDown
-                className={`ml-2 transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
-                size={20}
-              />
+              Load More Projects ({filteredProjects.length - visibleProjects} more)
             </Button>
           </motion.div>
         )}
+
+        {/* Results Count */}
+        <div className="text-center mt-8 text-sm text-slate-500">
+          Showing {displayedProjects.length} of {filteredProjects.length} projects
+        </div>
       </div>
     </section>
   );
 }
+
