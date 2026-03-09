@@ -1,11 +1,10 @@
-
 import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Card, CardContent } from './ui/card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
 const emailjsConfig = {
@@ -14,25 +13,19 @@ const emailjsConfig = {
   publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'vtLjy58DO80jgDyeJ',
 };
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'agrito.kryiss@gmail.com',
-    href: 'mailto:agrito.kryiss@gmail.com',
+// Country-specific contact details
+const contactDetailsByCountry = {
+  default: {
+    phone: '+973 3648 7095',
+    phoneHref: 'tel:+97336487095',
+    location: 'Arad, Muharraq, Bahrain',
   },
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: '+973 3648 7095',
-    href: 'tel:+97336487095',
+  PK: {
+    phone: '+92 333 1400442',
+    phoneHref: 'tel:+923331400442',
+    location: 'Pakistan',
   },
-  {
-    icon: MapPin,
-    label: 'Location',
-    value: 'Bahrain (Remote Available)',
-  },
-];
+};
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -43,6 +36,49 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [userCountry, setUserCountry] = useState<string>('default');
+
+  // Detect user's country on component mount
+  useEffect(() => {
+    const detectCountry = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        if (data.country_code) {
+          setUserCountry(data.country_code);
+        }
+      } catch (error) {
+        console.error('Error detecting country:', error);
+        // Keep default country on error
+      }
+    };
+
+    detectCountry();
+  }, []);
+
+  // Get country-specific contact details
+  const contactDetails = contactDetailsByCountry[userCountry as keyof typeof contactDetailsByCountry] || contactDetailsByCountry.default;
+
+  // Dynamic contact info based on user location
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'agrito.kryiss@gmail.com',
+      href: 'mailto:agrito.kryiss@gmail.com',
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: contactDetails.phone,
+      href: contactDetails.phoneHref,
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: `${contactDetails.location} (Remote Available)`,
+    },
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +107,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-white">
+    <section id="contact" className="py-20 lg:py-32 bg-white overflow-x-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -268,5 +304,4 @@ export function Contact() {
     </section>
   );
 }
-
 
