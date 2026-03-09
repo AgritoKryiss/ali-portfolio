@@ -26,7 +26,7 @@ const skillCategories = [
 const tools = [
   'WordPress Admin', 'WooCommerce', 'ACF PRO', 'WPML', 'Elementor', 'Divi', 
   'Yoast SEO', 'Rank Math', 'WP Rocket', 'LiteSpeed Cache', 'Git', 'GitHub',
-  'VS Code', 'phpMyAdmin', 'Docker', 'Vercel', 'Netlify', 'cPanel', 'WP-CLI'
+  'VS Code', 'phpMyAdmin', 'Vercel', 'Netlify', 'cPanel', 'WP-CLI'
 ];
 
 export function Skills() {
