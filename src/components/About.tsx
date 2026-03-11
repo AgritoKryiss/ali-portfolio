@@ -44,23 +44,23 @@ export function About() {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <div className="aspect-[4/3] bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-6xl font-bold text-white mb-2">7+</div>
-                  <div className="text-blue-100 text-lg">Years of Experience</div>
+              <div className="aspect-[3/4] sm:aspect-[4/3] bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+                <div className="text-center p-4 sm:p-8">
+                  <div className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-2">7+</div>
+                  <div className="text-blue-100 text-base sm:text-lg">Years of Experience</div>
                 </div>
               </div>
               
               {/* Overlay badges */}
-              <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-3">
-                <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
-                  <span className="text-sm font-semibold text-slate-900">WordPress</span>
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap gap-2 sm:gap-3">
+                <div className="bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-lg flex-1 sm:flex-none text-center">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900">WordPress</span>
                 </div>
-                <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
-                  <span className="text-sm font-semibold text-slate-900">WooCommerce</span>
+                <div className="bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-lg flex-1 sm:flex-none text-center">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900">WooCommerce</span>
                 </div>
-                <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
-                  <span className="text-sm font-semibold text-slate-900">PHP</span>
+                <div className="bg-white/95 backdrop-blur-sm px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-lg flex-1 sm:flex-none text-center">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900">PHP</span>
                 </div>
               </div>
             </div>
