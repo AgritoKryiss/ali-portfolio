@@ -19,7 +19,7 @@ const workHistory = [
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-32 bg-white">
+    <section id="about" className="py-20 lg:py-32 bg-white overflow-x-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
