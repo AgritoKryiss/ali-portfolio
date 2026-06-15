@@ -64,8 +64,8 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'agrito.kryiss@gmail.com',
-      href: 'mailto:agrito.kryiss@gmail.com',
+      value: 'alihaider.tech92@gmail.com',
+      href: 'mailto:alihaider.tech92@gmail.com',
     },
     {
       icon: Phone,
