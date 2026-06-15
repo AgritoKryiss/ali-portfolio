@@ -23,7 +23,7 @@ const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
   { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:agrito.kryiss@gmail.com', label: 'Email' },
+  { icon: Mail, href: 'mailto:alihaider.tech92@gmail.com', label: 'Email' },
 ];
 
 export function Footer() {
@@ -108,8 +108,8 @@ export function Footer() {
             <h3 className="font-bold text-lg mb-4">Get In Touch</h3>
             <ul className="space-y-3 text-slate-400">
               <li>
-                <a href="mailto:agrito.kryiss@gmail.com" className="hover:text-blue-400 transition-colors">
-                  agrito.kryiss@gmail.com
+                <a href="mailto:alihaider.tech92@gmail.com" className="hover:text-blue-400 transition-colors">
+                  alihaider.tech92@gmail.com
                 </a>
               </li>
               <li>
