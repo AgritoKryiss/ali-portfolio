@@ -1,5 +1,21 @@
-
+# Allow all bots
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
 
+# Crawl delay to be respectful
+Crawl-delay: 1
+
+# Specific rules for popular bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap locations
 Sitemap: https://alihaiderweb.com/sitemap.xml

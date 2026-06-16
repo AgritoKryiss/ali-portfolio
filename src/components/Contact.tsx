@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Card, CardContent } from './ui/card';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const emailjsConfig = {
@@ -36,30 +36,10 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [userCountry, setUserCountry] = useState<string>('default');
 
-  // Detect user's country on component mount
-  useEffect(() => {
-    const detectCountry = async () => {
-      try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        if (data.country_code) {
-          setUserCountry(data.country_code);
-        }
-      } catch (error) {
-        console.error('Error detecting country:', error);
-        // Keep default country on error
-      }
-    };
+  // Dynamic contact info (static for production)
+  const contactDetails = contactDetailsByCountry.default;
 
-    detectCountry();
-  }, []);
-
-  // Get country-specific contact details
-  const contactDetails = contactDetailsByCountry[userCountry as keyof typeof contactDetailsByCountry] || contactDetailsByCountry.default;
-
-  // Dynamic contact info based on user location
   const contactInfo = [
     {
       icon: Mail,

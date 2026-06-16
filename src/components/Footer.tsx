@@ -16,12 +16,11 @@ const services = [
   'Plugin Development',
   'Performance Optimization',
   'Website Maintenance',
-  'Technical SEO',
 ];
 
 const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/ali-haider-0850a0159/', label: 'LinkedIn' },
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Mail, href: 'mailto:alihaider.tech92@gmail.com', label: 'Email' },
 ];
