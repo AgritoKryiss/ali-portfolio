@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ali-portfolio-zeta.vercel.app/sitemap.xml
+Sitemap: https://alihaiderweb.com/sitemap.xml
