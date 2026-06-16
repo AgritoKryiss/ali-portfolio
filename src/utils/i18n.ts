@@ -9,9 +9,10 @@ interface TranslationKeys {
   [key: string]: string
 }
 
-interface Translations {
+type Translations = {
   [lang in Language]: TranslationKeys
 }
+
 
 export const translations: Translations = {
   en: {

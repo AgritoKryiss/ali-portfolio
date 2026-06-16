@@ -86,7 +86,7 @@ export const handleKeyboardNavigation = (
 /**
  * Create accessible modal overlay
  */
-export const createAccessibleModal = (content: string, onClose: () => void): HTMLElement => {
+export const createAccessibleModal = (content: string, _onClose: () => void): HTMLElement => {
   const modal = document.createElement('div')
   modal.setAttribute('role', 'dialog')
   modal.setAttribute('aria-modal', 'true')

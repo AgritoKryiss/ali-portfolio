@@ -26,8 +26,8 @@ export const initializeAnalytics = () => {
   }
   // @ts-ignore
   window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', GA_ID, {
+  (gtag as (...args: unknown[]) => void)('js', new Date());
+  (gtag as (...args: unknown[]) => void)('config', GA_ID, {
     page_path: window.location.pathname,
   });
 };
