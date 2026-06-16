@@ -1,4 +1,5 @@
-import { Code2, ShoppingCart, Wrench, Search, Zap, Shield } from 'lucide-react';
+// import { Code2, ShoppingCart, Wrench, Search, Zap, Shield } from 'lucide-react';
+import { Code2, ShoppingCart, Wrench, Zap, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
