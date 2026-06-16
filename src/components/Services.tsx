@@ -38,13 +38,13 @@ const services = [
     features: ['Security Updates', 'Backup Management', 'Uptime Monitoring', 'Regular Audits'],
     color: 'red',
   },
-  {
-    icon: Search,
-    title: 'Technical SEO',
-    description: 'Implementing SEO best practices to improve search visibility, including schema markup, performance optimization, and content structure.',
-    features: ['Technical SEO Audit', 'Schema Markup', 'Performance SEO', 'Site Structure'],
-    color: 'indigo',
-  },
+  // {
+  //   icon: Search,
+  //   title: 'Technical SEO',
+  //   description: 'Implementing SEO best practices to improve search visibility, including schema markup, performance optimization, and content structure.',
+  //   features: ['Technical SEO Audit', 'Schema Markup', 'Performance SEO', 'Site Structure'],
+  //   color: 'indigo',
+  // },
 ];
 
 export function Services() {

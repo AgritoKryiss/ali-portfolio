@@ -18,7 +18,7 @@ const skillCategories = [
   },
   {
     title: 'Performance & Security',
-    skills: ['Core Web Vitals', 'Caching Optimization', 'Performance Tuning', 'Security Hardening', 'Debugging', 'Code Review', 'SEO'],
+    skills: ['Core Web Vitals', 'Caching Optimization', 'Performance Tuning', 'Security Hardening', 'Debugging', 'Code Review'],
     color: 'green',
   },
 ];
