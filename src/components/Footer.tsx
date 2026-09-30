@@ -50,7 +50,7 @@ export function Footer() {
               <span className="text-xl font-bold">Ali<span className="text-blue-400">Haider</span></span>
             </div>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Senior WordPress Developer with 7+ years of experience crafting exceptional 
+              Senior WordPress Engineer with 7+ years of experience crafting exceptional 
               web solutions that help businesses thrive in the digital world.
             </p>
             <div className="flex gap-3">
@@ -112,11 +112,11 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+97336487095" className="hover:text-blue-400 transition-colors">
-                  +973 3648 7095
+                <a href="tel:+923331400442" className="hover:text-blue-400 transition-colors">
+                  +92 333 1400442
                 </a>
               </li>
-              <li>Bahrain (Remote Available)</li>
+              <li>Lahore, Pakistan · Worldwide Remote · Open to Relocation</li>
             </ul>
           </div>
         </div>
@@ -125,7 +125,7 @@ export function Footer() {
         <div className="border-t border-slate-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm">
-              © {currentYear} Ali Haider - Senior WordPress Developer. All rights reserved.
+              © {currentYear} Ali Haider - Senior WordPress Engineer. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">

@@ -1,41 +1,43 @@
-import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Card, CardContent } from './ui/card';
-import { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Card, CardContent } from "./ui/card";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const emailjsConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_d02wn11',
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_ddvc28l',
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'vtLjy58DO80jgDyeJ',
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_d02wn11",
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_ddvc28l",
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "vtLjy58DO80jgDyeJ",
 };
 
 // Country-specific contact details
 const contactDetailsByCountry = {
   default: {
-    phone: '+973 3648 7095',
-    phoneHref: 'tel:+97336487095',
-    location: 'Arad, Muharraq, Bahrain',
+    phone: "+92 333 1400442",
+    phoneHref: "tel:+923331400442",
+    location: "Lahore, Pakistan",
   },
   PK: {
-    phone: '+92 333 1400442',
-    phoneHref: 'tel:+923331400442',
-    location: 'Pakistan',
+    phone: "+92 333 1400442",
+    phoneHref: "tel:+923331400442",
+    location: "Pakistan",
   },
 };
 
 export function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Dynamic contact info (static for production)
   const contactDetails = contactDetailsByCountry.default;
@@ -43,19 +45,19 @@ export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'alihaider.tech92@gmail.com',
-      href: 'mailto:alihaider.tech92@gmail.com',
+      label: "Email",
+      value: "alihaider.tech92@gmail.com",
+      href: "mailto:alihaider.tech92@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
+      label: "Phone",
       value: contactDetails.phone,
       href: contactDetails.phoneHref,
     },
     {
       icon: MapPin,
-      label: 'Location',
+      label: "Location",
       value: `${contactDetails.location} (Remote Available)`,
     },
   ];
@@ -63,26 +65,28 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
       await emailjs.send(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
         formData,
-        emailjsConfig.publicKey
+        emailjsConfig.publicKey,
       );
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      console.error('EmailJS Error:', error);
-      setSubmitStatus('error');
+      console.error("EmailJS Error:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -99,7 +103,8 @@ export function Contact() {
         >
           <h2 className="section-heading">Get In Touch</h2>
           <p className="section-subheading mx-auto">
-            Have a project in mind? Let's discuss how I can help bring your vision to life
+            Have a project in mind? Let's discuss how I can help bring your
+            vision to life
           </p>
         </motion.div>
 
@@ -117,9 +122,9 @@ export function Contact() {
                 Let's Connect
               </h3>
               <p className="text-slate-600 leading-relaxed">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you have a question or just want to say hi, I'll try my best 
-                to get back to you!
+                I'm always interested in hearing about new projects and
+                opportunities. Whether you have a question or just want to say
+                hi, I'll try my best to get back to you!
               </p>
             </div>
 
@@ -139,8 +144,12 @@ export function Contact() {
                         <info.icon className="w-5 h-5 text-blue-600" />
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-slate-500">{info.label}</div>
-                        <div className="font-semibold text-slate-900">{info.value}</div>
+                        <div className="text-sm font-medium text-slate-500">
+                          {info.label}
+                        </div>
+                        <div className="font-semibold text-slate-900">
+                          {info.value}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -153,11 +162,13 @@ export function Contact() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-white font-semibold">Available for New Projects</span>
+                  <span className="text-white font-semibold">
+                    Available for New Projects
+                  </span>
                 </div>
                 <p className="text-blue-100 text-sm">
-                  I'm currently available for freelance work and long-term partnerships. 
-                  Let's create something amazing together!
+                  I'm currently available for freelance work and long-term
+                  partnerships. Let's create something amazing together!
                 </p>
               </CardContent>
             </Card>
@@ -176,7 +187,10 @@ export function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-slate-700 mb-2"
+                      >
                         Your Name *
                       </label>
                       <Input
@@ -191,7 +205,10 @@ export function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-slate-700 mb-2"
+                      >
                         Your Email *
                       </label>
                       <Input
@@ -208,7 +225,10 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-slate-700 mb-2"
+                    >
                       Subject *
                     </label>
                     <Input
@@ -224,7 +244,10 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-slate-700 mb-2"
+                    >
                       Message *
                     </label>
                     <Textarea
@@ -240,20 +263,25 @@ export function Contact() {
                   </div>
 
                   {/* Status Messages */}
-                  {submitStatus === 'success' && (
+                  {submitStatus === "success" && (
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="flex items-center gap-2 p-4 bg-green-50 text-green-700 rounded-lg"
                     >
                       <CheckCircle2 className="w-5 h-5" />
-                      <span>Message sent successfully! I'll get back to you soon.</span>
+                      <span>
+                        Message sent successfully! I'll get back to you soon.
+                      </span>
                     </motion.div>
                   )}
 
-                  {submitStatus === 'error' && (
+                  {submitStatus === "error" && (
                     <div className="flex items-center gap-2 p-4 bg-red-50 text-red-700 rounded-lg">
-                      <span>Failed to send message. Please try again or email directly.</span>
+                      <span>
+                        Failed to send message. Please try again or email
+                        directly.
+                      </span>
                     </div>
                   )}
 
@@ -284,4 +312,3 @@ export function Contact() {
     </section>
   );
 }
-
