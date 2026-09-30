@@ -8,7 +8,7 @@ export function TrustBar() {
   return (
     <section
       id="trust-bar"
-      className="py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50"
+      className="py-10 lg:py-12 bg-gradient-to-br from-slate-50 via-white to-blue-50"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
@@ -17,7 +17,7 @@ export function TrustBar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="section-heading">{TRUST_BAR_CONTENT.heading}</h2>
           <p className="section-subheading mx-auto">

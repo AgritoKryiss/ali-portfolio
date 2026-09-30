@@ -7,12 +7,15 @@ import { useState } from 'react';
 import { projects } from '../content/projects';
 
 // Project images - using local assets
-const projectImages = import.meta.glob<{ default: string }>("../assets/projects/*.webp", {
-  eager: true,
-});
+const projectImages = import.meta.glob<{ default: string }>(
+  "../assets/project-thumbnails/*.webp",
+  {
+    eager: true,
+  }
+);
 
 const getProjectImage = (filename: string): string => {
-  const path = `../assets/projects/${filename}`;
+  const path = `../assets/project-thumbnails/${filename}`;
   const module = projectImages[path];
   if (!module) {
     return 'https://via.placeholder.com/800x600?text=Project';

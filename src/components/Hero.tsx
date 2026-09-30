@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50"
+      className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
@@ -31,7 +31,7 @@ export function Hero() {
         <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 lg:pt-32 lg:pb-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <motion.div
