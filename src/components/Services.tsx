@@ -1,52 +1,9 @@
-// import { Code2, ShoppingCart, Wrench, Search, Zap, Shield } from 'lucide-react';
 import { Code2, ShoppingCart, Wrench, Zap, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { SERVICES_CONTENT } from '../content/services';
 
-const services = [
-  {
-    icon: Code2,
-    title: 'WordPress Development',
-    description: 'Custom theme development with pixel-perfect accuracy, responsive layouts, and cross-browser compatibility. Building scalable WordPress solutions from scratch.',
-    features: ['Custom Theme Development', 'Child Themes', 'Theme Customization', 'Page Builders'],
-    color: 'blue',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'WooCommerce Solutions',
-    description: 'Full-featured e-commerce stores with custom functionality, payment gateways, and optimized checkout flows that drive conversions.',
-    features: ['Store Setup & Configuration', 'Custom Product Types', 'Payment Gateway Integration', 'Subscription Systems'],
-    color: 'purple',
-  },
-  {
-    icon: Wrench,
-    title: 'Plugin Development',
-    description: 'Custom WordPress plugins tailored to specific business needs, reducing reliance on third-party solutions and ensuring maintainability.',
-    features: ['Custom Plugin Development', 'Plugin Customization', 'API Integrations', 'Third-party Connections'],
-    color: 'amber',
-  },
-  {
-    icon: Zap,
-    title: 'Performance Optimization',
-    description: 'Achieving lightning-fast load times through caching, asset optimization, database cleanup, and Core Web Vitals improvements.',
-    features: ['Core Web Vitals', 'Caching Strategies', 'Image Optimization', 'Database Optimization'],
-    color: 'green',
-  },
-  {
-    icon: Shield,
-    title: 'Website Maintenance',
-    description: 'Ongoing maintenance and support to keep your WordPress site secure, updated, and performing optimally.',
-    features: ['Security Updates', 'Backup Management', 'Uptime Monitoring', 'Regular Audits'],
-    color: 'red',
-  },
-  // {
-  //   icon: Search,
-  //   title: 'Technical SEO',
-  //   description: 'Implementing SEO best practices to improve search visibility, including schema markup, performance optimization, and content structure.',
-  //   features: ['Technical SEO Audit', 'Schema Markup', 'Performance SEO', 'Site Structure'],
-  //   color: 'indigo',
-  // },
-];
+const iconMap: Record<string, typeof Code2> = { Code2, ShoppingCart, Wrench, Zap, Shield };
 
 export function Services() {
   return (
@@ -60,15 +17,17 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Services</h2>
+          <h2 className="section-heading">{SERVICES_CONTENT.heading}</h2>
           <p className="section-subheading mx-auto">
-            Comprehensive WordPress solutions tailored to your business needs
+            {SERVICES_CONTENT.subtitle}
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => (
+          {SERVICES_CONTENT.services.map((service, index) => {
+            const Icon = iconMap[service.icon];
+            return (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
@@ -86,7 +45,7 @@ export function Services() {
                     service.color === 'red' ? 'bg-red-100' :
                     'bg-indigo-100'
                   }`}>
-                    <service.icon className={`w-7 h-7 ${
+                    <Icon className={`w-7 h-7 ${
                       service.color === 'blue' ? 'text-blue-600' :
                       service.color === 'purple' ? 'text-purple-600' :
                       service.color === 'amber' ? 'text-amber-600' :
@@ -123,7 +82,8 @@ export function Services() {
                 </CardContent>
               </Card>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Process Section */}

@@ -2,5 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rewrites": [
+    { "source": "/engineering-stories/:path*", "destination": "/index.html" },
+    { "source": "/services/:path*", "destination": "/index.html" }
+  ]
 }

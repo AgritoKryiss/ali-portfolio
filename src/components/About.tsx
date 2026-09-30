@@ -84,7 +84,7 @@ export function About() {
             
             <div className="space-y-4 text-slate-600 leading-relaxed">
               <p>
-                I'm a Senior WordPress Developer with over seven years of professional 
+                I'm a Senior WordPress Engineer with over seven years of professional 
                 experience building scalable WordPress and WooCommerce platforms for 
                 international clients.
               </p>

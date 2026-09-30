@@ -1,6 +1,7 @@
 
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
+import { TrustBar } from './components/TrustBar'
 import { About } from './components/About'
 import { Portfolio } from './components/Portfolio'
 import { Services } from './components/Services'
@@ -11,6 +12,8 @@ import { Footer } from './components/Footer'
 import { BackToTopButton } from './components/BackToTop'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { useTheme } from './hooks/useTheme'
+import { EngineeringStory } from './pages/EngineeringStory'
+import { Service } from './pages/Service'
 
 function AppContent() {
   const { isDark } = useTheme()
@@ -20,6 +23,7 @@ function AppContent() {
       <Header />
       <main>
         <Hero />
+        <TrustBar />
         <About />
         <Portfolio />
         <Services />
@@ -34,11 +38,12 @@ function AppContent() {
 }
 
 export default function App() {
+  const storyMatch = window.location.pathname.match(/^\/engineering-stories\/([^/]+)\/?$/)
+  const serviceMatch = window.location.pathname.match(/^\/services\/([^/]+)\/?$/)
+
   return (
     <ErrorBoundary>
-      <AppContent />
+      {storyMatch ? <EngineeringStory slug={decodeURIComponent(storyMatch[1])} /> : serviceMatch ? <Service slug={decodeURIComponent(serviceMatch[1])} /> : <AppContent />}
     </ErrorBoundary>
   )
 }
-
-

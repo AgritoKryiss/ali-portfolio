@@ -22,7 +22,7 @@ export const translations: Translations = {
     nav_services: 'Services',
     nav_blog: 'Blog',
     nav_contact: 'Contact',
-    hero_title: 'Senior WordPress Developer',
+    hero_title: 'Senior WordPress Engineer',
     hero_subtitle: '7+ years of expertise in building scalable WordPress solutions',
     about_title: 'About Me',
     portfolio_title: 'Portfolio',
