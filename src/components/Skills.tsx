@@ -1,32 +1,78 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const skillCategories = [
   {
-    title: 'WordPress Ecosystem',
-    skills: ['WordPress', 'WooCommerce', 'Advanced Custom Fields (ACF)', 'Custom Post Types', 'Custom Plugins', 'WPML', 'Multisite'],
-    color: 'blue',
+    title: "WordPress Ecosystem",
+    skills: [
+      "WordPress",
+      "WooCommerce",
+      "Advanced Custom Fields (ACF)",
+      "Custom Post Types",
+      "Custom Plugins",
+      "WPML",
+      "Multisite",
+    ],
+    color: "blue",
   },
   {
-    title: 'Frontend Development',
-    skills: ['React', 'JavaScript', 'TypeScript', 'TailwindCSS', 'HTML5', 'CSS3', 'Bootstrap'],
-    color: 'purple',
+    title: "Frontend Development",
+    skills: [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "TailwindCSS",
+      "HTML5",
+      "CSS3",
+      "Bootstrap",
+    ],
+    color: "purple",
   },
   {
-    title: 'Backend Development',
-    skills: ['PHP', 'MySQL', 'REST APIs', 'WordPress REST API', 'AJAX', 'CRON Jobs', 'Webhooks'],
-    color: 'amber',
+    title: "Backend Development",
+    skills: [
+      "PHP",
+      "MySQL",
+      "REST APIs",
+      "WordPress REST API",
+      "AJAX",
+      "CRON Jobs",
+      "Webhooks",
+    ],
+    color: "amber",
   },
   {
-    title: 'Performance & Security',
-    skills: ['Core Web Vitals', 'Caching Optimization', 'Performance Tuning', 'Security Hardening', 'Debugging', 'Code Review'],
-    color: 'green',
+    title: "Performance & Security",
+    skills: [
+      "Core Web Vitals",
+      "Caching Optimization",
+      "Performance Tuning",
+      "Security Hardening",
+      "Debugging",
+      "Code Review",
+    ],
+    color: "green",
   },
 ];
 
 const tools = [
-  'WordPress Admin', 'WooCommerce', 'ACF PRO', 'WPML', 'Elementor', 'Divi', 
-  'Yoast SEO', 'Rank Math', 'WP Rocket', 'LiteSpeed Cache', 'Git', 'GitHub',
-  'VS Code', 'phpMyAdmin', 'Vercel', 'Netlify', 'cPanel', 'WP-CLI'
+  "WordPress Admin",
+  "WooCommerce",
+  "ACF PRO",
+  "WPML",
+  "Elementor",
+  "Divi",
+  "Yoast SEO",
+  "Rank Math",
+  "WP Rocket",
+  "LiteSpeed Cache",
+  "Git",
+  "GitHub",
+  "VS Code",
+  "phpMyAdmin",
+  "Vercel",
+  "Netlify",
+  "cPanel",
+  "WP-CLI",
 ];
 
 export function Skills() {
@@ -60,25 +106,37 @@ export function Skills() {
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  category.color === 'blue' ? 'bg-blue-100' :
-                  category.color === 'purple' ? 'bg-purple-100' :
-                  category.color === 'amber' ? 'bg-amber-100' :
-                  'bg-green-100'
-                }`}>
-                  <span className={`text-lg ${
-                    category.color === 'blue' ? 'text-blue-600' :
-                    category.color === 'purple' ? 'text-purple-600' :
-                    category.color === 'amber' ? 'text-amber-600' :
-                    'text-green-600'
-                  }`}>
-                    {category.color === 'blue' && '⚙️'}
-                    {category.color === 'purple' && '🎨'}
-                    {category.color === 'amber' && '🔧'}
-                    {category.color === 'green' && '⚡'}
+                <div
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    category.color === "blue"
+                      ? "bg-blue-100"
+                      : category.color === "purple"
+                        ? "bg-purple-100"
+                        : category.color === "amber"
+                          ? "bg-amber-100"
+                          : "bg-green-100"
+                  }`}
+                >
+                  <span
+                    className={`text-lg ${
+                      category.color === "blue"
+                        ? "text-blue-600"
+                        : category.color === "purple"
+                          ? "text-purple-600"
+                          : category.color === "amber"
+                            ? "text-amber-600"
+                            : "text-green-600"
+                    }`}
+                  >
+                    {category.color === "blue" && "⚙️"}
+                    {category.color === "purple" && "🎨"}
+                    {category.color === "amber" && "🔧"}
+                    {category.color === "green" && "⚡"}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">{category.title}</h3>
+                <h3 className="text-lg font-bold text-slate-900">
+                  {category.title}
+                </h3>
               </div>
 
               {/* Skills Tags */}
@@ -89,12 +147,18 @@ export function Skills() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                    }}
                     className={`px-3 py-1.5 text-sm font-medium rounded-lg ${
-                      category.color === 'blue' ? 'bg-blue-50 text-blue-700 border border-blue-100' :
-                      category.color === 'purple' ? 'bg-purple-50 text-purple-700 border border-purple-100' :
-                      category.color === 'amber' ? 'bg-amber-50 text-amber-700 border border-amber-100' :
-                      'bg-green-50 text-green-700 border border-green-100'
+                      category.color === "blue"
+                        ? "bg-blue-50 text-blue-700 border border-blue-100"
+                        : category.color === "purple"
+                          ? "bg-purple-50 text-purple-700 border border-purple-100"
+                          : category.color === "amber"
+                            ? "bg-amber-50 text-amber-700 border border-amber-100"
+                            : "bg-green-50 text-green-700 border border-green-100"
                     }`}
                   >
                     {skill}
@@ -114,8 +178,12 @@ export function Skills() {
           className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 lg:p-12"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-white mb-2">Tools & Technologies</h3>
-            <p className="text-slate-400">Development tools and platforms I work with daily</p>
+            <h3 className="text-2xl font-bold text-white mb-2">
+              Tools & Technologies
+            </h3>
+            <p className="text-slate-400">
+              Development tools and platforms I work with daily
+            </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-2">
@@ -143,13 +211,18 @@ export function Skills() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"
         >
           {[
-            { value: '7+', label: 'Years Experience' },
-            { value: '30+', label: 'Projects Completed' },
-            { value: '15+', label: 'Industries Served' },
-            { value: '100%', label: 'Client Satisfaction' },
+            { value: "7+", label: "Years Experience" },
+            { value: "30+", label: "Projects Delivered" },
+            { value: "Worldwide", label: "Remote Collaboration" },
+            { value: "WP + PHP", label: "Core Specialization" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center p-6 bg-slate-50 rounded-xl">
-              <div className="text-3xl font-bold text-blue-600 mb-1">{stat.value}</div>
+            <div
+              key={stat.label}
+              className="text-center p-6 bg-slate-50 rounded-xl"
+            >
+              <div className="text-3xl font-bold text-blue-600 mb-1">
+                {stat.value}
+              </div>
               <div className="text-sm text-slate-600">{stat.label}</div>
             </div>
           ))}
@@ -158,4 +231,3 @@ export function Skills() {
     </section>
   );
 }
-
