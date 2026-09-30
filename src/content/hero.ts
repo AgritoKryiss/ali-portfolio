@@ -4,19 +4,19 @@
  */
 
 export const HERO_CONTENT = {
-  badge: '✓ Available for Freelance • Agency • Full-Time Opportunities',
+  badge: '✓ Available Worldwide Remote • Open to Relocation • Freelance',
 
   headline: {
-    line1: 'Senior WordPress Engineer',
-    line2: 'for Businesses & Agencies',
-  },
+  line1: 'Senior WordPress & PHP Engineer',
+  line2: 'for Businesses & Agencies',
+},
 
   subheadline:
-    "I build custom WordPress websites, WooCommerce stores, and business systems that are fast, scalable, and easy to maintain. Whether you're launching a new project, improving an existing website, or need a reliable long-term development partner, I can help.",
+  "I build and maintain custom WordPress and WooCommerce systems, from themes and plugins to integrations, performance optimization, and complex production troubleshooting. I help businesses and agencies ship reliable solutions that are built to last.",
 
   cta: {
-    primary: 'Start Your Project',
-    secondary: 'Explore My Work',
+    primary: 'Work With Me',
+secondary: 'Explore My Work',
   },
 
   codePreview: {
@@ -25,7 +25,7 @@ export const HERO_CONTENT = {
   },
 
   floatingCards: [
-    { emoji: '⚡', title: 'Performance', subtitle: '95+ Score' },
+    { emoji: '⚡', title: 'Performance', subtitle: 'Core Web Vitals' },
     { emoji: '🎯', title: '30+', subtitle: 'Projects Delivered' },
   ],
 } as const;
